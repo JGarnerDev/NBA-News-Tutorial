@@ -1,0 +1,9 @@
+.videoList {}
+
+.videoList h3 {
+    text-align: center;
+    margin: 20px;
+    color: black;
+    font-weight: 300;
+    font-size: 21px;
+}

@@ -6,6 +6,7 @@ import React from "react";
 
 import NewsSlider from "../widgets/NewsSlider/NewsSlider";
 import NewsList from "../widgets/NewsList/NewsList";
+import VideosList from "../VideosList/VideosList";
 
 // Styling
 // Logic
@@ -24,14 +25,13 @@ const Home = () => {
 
 			<NewsList type="card" loadmore={true} start={3} amount={3} />
 
-			{/* <NewsSlider
-				type="secondary"
+			<VideosList
+				type="card"
+				title={true}
+				loadmore={false}
 				start={0}
 				amount={3}
-				settings={{
-					dots: false
-				}}
-			/> */}
+			/>
 		</div>
 	);
 };
