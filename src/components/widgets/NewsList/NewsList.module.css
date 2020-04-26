@@ -1,0 +1,28 @@
+.card {
+    border: 1px solid black;
+    background: white;
+    margin-top: 0px;
+    padding: 8px 5px 0 5px;
+}
+
+.card h2 {
+    font-size: 13px;
+    line-height: 21px;
+    margin: 5px 0;
+}
+
+.card a {
+    text-decoration: none;
+}
+
+.wrapper {
+    box-sizing: border-box;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all .5s ease-in;
+}
+
+.wrapper_enter {
+    opacity: 1;
+    transform: translateX(0%);
+}

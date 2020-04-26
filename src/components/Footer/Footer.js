@@ -2,6 +2,9 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
+
+// Config
+
 import { CURRENT_YEAR } from "../../config";
 
 // Components
