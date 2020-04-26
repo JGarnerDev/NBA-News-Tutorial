@@ -1,0 +1,35 @@
+.videoList {}
+
+.videoList h3 {
+    text-align: center;
+    margin: 20px;
+    color: black;
+    font-weight: 300;
+    font-size: 21px;
+}
+
+.video {
+    display: flex;
+    border-bottom: 2px solid grey;
+    background: white;
+}
+
+.video h2 {
+    font-size: 13px;
+    color: black;
+}
+
+.left {
+    background-size: cover !important;
+}
+
+.left div {
+    width: 90px;
+    height: 90px;
+    background-size: 40px !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    background: url('/images/play.png');
+}
+
+.right {}

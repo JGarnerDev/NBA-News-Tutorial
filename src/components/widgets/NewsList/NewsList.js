@@ -22,11 +22,11 @@ import style from "./NewsList.module.css";
 
 class NewsList extends Component {
 	state = {
+		teams: [],
 		items: [],
 		start: this.props.start,
 		end: this.props.start + this.props.amount,
-		amount: this.props.amount,
-		teams: []
+		amount: this.props.amount
 	};
 
 	componentWillMount() {
@@ -52,6 +52,9 @@ class NewsList extends Component {
 	loadMore = () => {
 		let end = this.state.end + this.state.amount;
 		this.req(this.state.end, end);
+		this.setState({
+			end: end
+		});
 	};
 
 	renderNews = type => {

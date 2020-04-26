@@ -6,7 +6,7 @@ import React from "react";
 
 import NewsSlider from "../widgets/NewsSlider/NewsSlider";
 import NewsList from "../widgets/NewsList/NewsList";
-import VideosList from "../VideosList/VideosList";
+import VideosList from "../widgets/VideosList/VideosList";
 
 // Styling
 // Logic
@@ -28,7 +28,7 @@ const Home = () => {
 			<VideosList
 				type="card"
 				title={true}
-				loadmore={false}
+				loadmore={true}
 				start={0}
 				amount={3}
 			/>
