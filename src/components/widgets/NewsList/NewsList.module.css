@@ -26,3 +26,33 @@
     opacity: 1;
     transform: translateX(0%);
 }
+
+
+/* News Main Template */
+
+.card_wrap {
+    display: flex;
+    border-bottom: 2px solid grey;
+    background: white;
+}
+
+.card_wrap h2 {
+    font-size: 12px;
+}
+
+.left {
+    background-size: cover !important;
+}
+
+.left div {
+    width: 90px;
+    height: 90px;
+    background-size: 40px !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+}
+
+.right {
+    flex-grow: 1;
+    padding: 10px
+}

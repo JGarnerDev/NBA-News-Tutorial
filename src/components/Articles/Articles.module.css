@@ -1,0 +1,89 @@
+.article_TeamHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid gray;
+    border-bottom: 0px;
+    background: white;
+    margin: 5px 5px 0px 5px;
+}
+
+.left {
+    width: 50px;
+    height: 50px;
+    background-size: 65% !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+}
+
+.right {
+    flex-grow: 1;
+    padding-left: 10px;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.article_PostData {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    padding: 10px;
+    border: 1px solid gray;
+    border-bottom: 0px;
+    margin: 5px 5px 0px 5px;
+    font-size: 13px;
+    font-weight: 300;
+}
+
+.article_PostData span {
+    font-weight: 500;
+    margin-right: 30px;
+}
+
+.article_body {
+    background: white;
+    margin: 0 5px;
+    border: 1px solid gray;
+    padding: 10px;
+}
+
+.article_body h1 {
+    font-size: 25px;
+    font-weight: 400;
+    color: darkgrey;
+    margin: 15px 0;
+}
+
+.article_image {
+    background-size: cover !important;
+    width: 100%;
+    height: 200px;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+}
+
+.article_text {
+    font-weight: 300;
+    color: darkgrey;
+    line-height: 23px;
+    margin: 15px 0;
+}
+
+.video_body {
+    background: none;
+    margin: 0 5px;
+    border: 1px solid grey;
+}
+
+.video_body h1 {
+    font-size: 25px;
+    font-weight: 400;
+    color: darkgray;
+    margin: 15px 0;
+    padding: 0 10px;
+}
+
+.video_body iframe {
+    border: 0;
+}

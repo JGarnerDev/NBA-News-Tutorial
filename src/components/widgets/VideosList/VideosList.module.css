@@ -32,4 +32,6 @@
     background: url('/images/play.png');
 }
 
-.right {}
+.videosRelated {
+    margin: 0 5px;
+}
