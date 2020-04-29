@@ -61,7 +61,9 @@ class NewsList extends Component {
 
 	loadMore = () => {
 		let end = this.state.end + this.state.amount;
-		this.req(this.state.end, end);
+
+		//  the + 1 below avoids duplication of items in the news list
+		this.req(this.state.end + 1, end);
 		this.setState({
 			end: end
 		});

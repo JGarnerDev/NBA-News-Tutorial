@@ -1,13 +1,19 @@
 // Modules
 import React, { Component } from "react";
-import axios from "axios";
+
+// Firebase
+
+import {
+	firebaseDB,
+	DBTeams,
+	DBVideos,
+	firebaseLoop
+} from "../../../../firebase";
 
 // Components
 import Header from "./Header";
 
 // Config
-
-import { URL } from "../../../../config";
 
 // Styling
 
@@ -25,27 +31,38 @@ class Video extends Component {
 	};
 
 	componentWillMount() {
-		axios.get(`${URL}/videos?id=${this.props.match.params.id}`).then(res => {
-			let article = res.data[0];
-			axios.get(`${URL}/teams?id=${article.team}`).then(res => {
-				this.setState({
-					article: article,
-					team: res.data
-				});
-				this.getRelated();
+		firebaseDB
+			.ref(`videos/${this.props.match.params.id}`)
+			.once("value")
+			.then(snapshot => {
+				let article = snapshot.val();
+				DBTeams.orderByChild("teamId")
+					.equalTo(article.team)
+					.once("value")
+					.then(snapshot => {
+						const team = firebaseLoop(snapshot);
+						this.setState({
+							article,
+							team
+						});
+						this.getRelated();
+					});
 			});
-		});
 	}
 
 	getRelated = () => {
-		axios.get(`${URL}/teams`).then(res => {
-			let teams = res.data;
-			axios
-				.get(`${URL}/videos?q=${this.state.team[0].city}&_limit=3`)
-				.then(res => {
+		DBTeams.once("value").then(snapshot => {
+			const teams = firebaseLoop(snapshot);
+
+			DBVideos.orderByChild("team")
+				.equalTo(this.state.article.team)
+				.limitToFirst(3)
+				.once("value")
+				.then(snapshot => {
+					const related = firebaseLoop(snapshot);
 					this.setState({
-						teams: teams,
-						related: res.data
+						teams,
+						related
 					});
 				});
 		});

@@ -22,8 +22,6 @@
 
 Todo:
 
-- NewsSlider (widget)
+- ComponentDidMount instead of ComponentWillMount advocated, do some research into why
 
-  - Will have componentWillMount(){...} to attempt to get information from database before render.
-
-    - Need to move code to componentDidMount, as componentWillMount is listed as unsafe. Requires setting initial state in the constructor
+- VideosRelated links broken

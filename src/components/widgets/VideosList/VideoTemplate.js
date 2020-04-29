@@ -5,9 +5,6 @@ import { Link } from "react-router-dom";
 
 // Components
 
-import CardInfo from "../CardInfo/CardInfo";
-import Button from "../Buttons/Buttons";
-
 // Config
 
 // Styling

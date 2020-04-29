@@ -1,7 +1,10 @@
 // Modules
 
 import React, { Component } from "react";
-import axios from "axios";
+
+// Firebase
+
+import { DBTeams, DBVideos, firebaseLoop } from "../../../firebase";
 
 // Components
 
@@ -33,18 +36,29 @@ class VideosList extends Component {
 
 	req = (start, end) => {
 		if (this.state.teams.length < 1) {
-			axios.get(`${URL}/teams`).then(res => {
+			DBTeams.once("value").then(snapshot => {
+				const teams = firebaseLoop(snapshot);
 				this.setState({
-					teams: res.data
+					teams
 				});
 			});
 		}
 
-		axios.get(`${URL}/videos?_start=${start}&_end=${end}`).then(res => {
-			this.setState({
-				videos: [...this.state.videos, ...res.data]
+		DBVideos.orderByChild("id")
+			.startAt(start)
+			.endAt(end)
+			.once("value")
+			.then(snapshot => {
+				const videos = firebaseLoop(snapshot);
+				this.setState({
+					videos: [...this.state.videos, ...videos],
+					start,
+					end
+				});
+			})
+			.catch(error => {
+				console.log(error);
 			});
-		});
 	};
 
 	renderTitle = () => {
@@ -71,7 +85,8 @@ class VideosList extends Component {
 
 	loadMore = () => {
 		let end = this.state.end + this.state.amount;
-		this.req(this.state.end, end);
+		// "this.state.end + 1" to avoid duplication of items
+		this.req(this.state.end + 1, end);
 		this.setState({
 			end: end
 		});
