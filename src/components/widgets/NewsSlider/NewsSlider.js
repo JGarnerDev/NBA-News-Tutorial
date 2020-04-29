@@ -1,8 +1,7 @@
 // Modules
 
 import React, { Component } from "react";
-import axios from "axios";
-
+import { DBArticles, firebaseLoop } from "../../../firebase";
 // Components
 
 import SliderTemplates from "./SliderTemplates";
@@ -16,14 +15,16 @@ class NewsSlider extends Component {
 	};
 
 	componentWillMount() {
-		axios
-			.get(
-				`http://localhost:3004/articles?_start=${this.props.start}&_end=${this.props.amount}`
-			)
-			.then(res => {
+		DBArticles.limitToFirst(3)
+			.once("value")
+			.then(snapshot => {
+				const news = firebaseLoop(snapshot);
 				this.setState({
-					news: res.data
+					news
 				});
+			})
+			.catch(error => {
+				console.log(error);
 			});
 	}
 

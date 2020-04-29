@@ -3,11 +3,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import axios from "axios";
+
+import { DBTeams, DBArticles, firebaseLoop } from "../../../firebase";
 
 // Config
-
-import { URL } from "../../../config";
 
 // Components
 
@@ -35,18 +34,29 @@ class NewsList extends Component {
 
 	req = (start, end) => {
 		if (this.state.teams.length < 1) {
-			axios.get(`${URL}/teams`).then(res => {
+			DBTeams.once("value").then(snapshot => {
+				const teams = firebaseLoop(snapshot);
 				this.setState({
-					teams: res.data
+					teams
 				});
 			});
 		}
-
-		axios.get(`${URL}/articles?_start=${start}&_end=${end}`).then(res => {
-			this.setState({
-				items: [...this.state.items, ...res.data]
+		// Load an amount of articles
+		DBArticles.orderByChild("id")
+			.startAt(start)
+			.endAt(end)
+			.once("value")
+			.then(snapshot => {
+				const articles = firebaseLoop(snapshot);
+				this.setState({
+					items: [...this.state.items, ...articles],
+					start,
+					end
+				});
+			})
+			.catch(error => {
+				console.log(error);
 			});
-		});
 	};
 
 	loadMore = () => {
