@@ -1,23 +1,29 @@
 // Modules
 
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { BrowserRouter } from 'react-router-dom'
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
 
 // Components
 
-import Routes from './routes'
+import Routes from "./routes";
+
+// Firebase
+
+import { firebase } from "./firebase";
 
 // Styling
 
 // Logic
 
-const App = () => {
-  return (
-    <BrowserRouter>
-      <Routes />
-    </BrowserRouter>
-  )
-}
+const App = props => {
+	return (
+		<BrowserRouter>
+			<Routes {...props} />
+		</BrowserRouter>
+	);
+};
 
-ReactDOM.render(<App />, document.getElementById('root'))
+firebase.auth().onAuthStateChanged(user => {
+	ReactDOM.render(<App user={user} />, document.getElementById("root"));
+});

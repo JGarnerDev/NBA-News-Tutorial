@@ -1,0 +1,21 @@
+.logContainer {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    margin: 0 auto;
+    height: 100vh;
+    padding-top: 100px;
+}
+
+.logContainer h2 {
+    text-align: center;
+}
+
+.logContainer input {
+    box-sizing: border-box;
+    height: 50px;
+    width: 80vw;
+    max-width: 300px;
+    padding: 10px;
+    margin-top: 40px;
+}

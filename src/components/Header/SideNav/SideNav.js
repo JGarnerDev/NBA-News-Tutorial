@@ -14,7 +14,7 @@ const SideNavigation = props => {
 	return (
 		<div>
 			<SideNav showNav={props.showNav} onHideNav={props.onHideNav}>
-				<SideNavItems />
+				<SideNavItems {...props} />
 			</SideNav>
 		</div>
 	);

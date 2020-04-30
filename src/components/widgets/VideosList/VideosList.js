@@ -13,8 +13,6 @@ import VideoTemplate from "./VideoTemplate";
 
 // Config
 
-import { URL } from "../../../config";
-
 // Styling
 
 import style from "./VideosList.module.css";
