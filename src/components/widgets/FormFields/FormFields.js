@@ -37,9 +37,28 @@ const FormFields = ({ formdata, change, id }) => {
 						<input
 							{...formdata.config}
 							value={formdata.value}
-							onBlur={event => change({ event, id, blur: true })}
-							onChange={event => change({ event, id, blur: false })}
+							onBlur={(event) => change({ event, id, blur: true })}
+							onChange={(event) => change({ event, id, blur: false })}
 						/>
+						{showError()}
+					</div>
+				);
+				break;
+			case "select":
+				formTemplate = (
+					<div className={style.formContainer}>
+						<select
+							value={formdata.value}
+							name={formdata.config.name}
+							onBlur={(event) => change({ event, id, blur: true })}
+							onChange={(event) => change({ event, id, blur: false })}
+						>
+							{formdata.config.options.map((item, i) => (
+								<option key={i} value={item.id}>
+									{item.name}
+								</option>
+							))}
+						</select>
 						{showError()}
 					</div>
 				);

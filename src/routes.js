@@ -6,6 +6,7 @@ import { Route, Switch } from "react-router-dom";
 
 import Home from "./components/Home/Home";
 import SignIn from "./components/SignIn/SignIn";
+import Dashboard from "./components/Dashboard/Dashboard";
 import News from "./components/Articles/News/Main/index";
 import VideosMain from "./components/Articles/Videos/Main/index";
 import NewsArticle from "./components/Articles/News/Post/index";
@@ -16,12 +17,13 @@ import Layout from "./hoc/Layout/Layout";
 
 // Logic
 
-const Routes = props => {
+const Routes = (props) => {
 	return (
 		<Layout user={props.user}>
 			<Switch>
 				<Route path="/" exact component={Home} />
 				<Route path="/sign-in" exact component={SignIn} />
+				<Route path="/dashboard" exact component={Dashboard} />
 				<Route path="/news" exact component={News} />
 				<Route path="/articles/:id" exact component={NewsArticle} />
 				<Route path="/videos/:id" component={VideoArticle} />

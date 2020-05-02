@@ -1,3 +1,5 @@
+This app is a project aided and taught by Tutsgalaxy's React Fullstack Course (2018)
+
 - Startup console commands
 
   - npm start to initialize the app
@@ -13,15 +15,10 @@
         - Component.js
         - Component.module.css
 
-- Database for demo purposes
-
-  - typicode's json-server for a fake REST API
-  - https://www.mockaroo.com/ for a dummy database, placed as db.json
-  - GET requests are made to localhost:3004/articles or localhost:3004/videos or  
-    localhost:3004/teams
-
 Todo:
 
 - ComponentDidMount instead of ComponentWillMount advocated, do some research into why
 
 - VideosRelated links broken
+
+- stateToHTML(convertedContent) in Dashboard.js makes a somewhat unscrutible error on input to the textarea
