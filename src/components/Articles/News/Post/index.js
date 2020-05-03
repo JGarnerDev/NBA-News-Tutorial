@@ -3,7 +3,12 @@ import React, { Component } from "react";
 
 // Firebase
 
-import { firebaseDB, DBTeams, firebaseLoop } from "../../../../firebase";
+import {
+	firebase,
+	firebaseDB,
+	DBTeams,
+	firebaseLoop,
+} from "../../../../firebase";
 
 // Components
 import Header from "./Header";
@@ -17,24 +22,39 @@ import style from "../../Articles.module.css";
 class NewsArticle extends Component {
 	state = {
 		article: [],
-		team: []
+		team: [],
+		imageURL: "",
+	};
+
+	getImageURL = (filename) => {
+		firebase
+			.storage()
+			.ref("images")
+			.child(filename)
+			.getDownloadURL()
+			.then((url) => {
+				this.setState({
+					imageURL: url,
+				});
+			});
 	};
 
 	componentWillMount() {
 		firebaseDB
 			.ref(`articles/${this.props.match.params.id}`)
 			.once("value")
-			.then(snapshot => {
+			.then((snapshot) => {
 				let article = snapshot.val();
 				DBTeams.orderByChild("teamId")
 					.equalTo(article.team)
 					.once("value")
-					.then(snapshot => {
+					.then((snapshot) => {
 						const team = firebaseLoop(snapshot);
 						this.setState({
 							article,
-							team
+							team,
 						});
+						this.getImageURL(article.image);
 					});
 			});
 	}
@@ -42,6 +62,7 @@ class NewsArticle extends Component {
 	render() {
 		const article = this.state.article;
 		const team = this.state.team;
+
 		return (
 			<div className={style.article}>
 				<Header
@@ -53,9 +74,12 @@ class NewsArticle extends Component {
 					<h1>{article.title}</h1>
 					<div
 						className={style.article_image}
-						style={{ background: `url('/images/articles/${article.image}')` }}
+						style={{ background: `url('${this.state.imageURL}')` }}
 					></div>
-					<div className={style.article_text}>{article.body}</div>
+					<div
+						className={style.article_text}
+						dangerouslySetInnerHTML={{ __html: article.body }}
+					></div>
 				</div>
 			</div>
 		);

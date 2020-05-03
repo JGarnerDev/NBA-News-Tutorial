@@ -14,7 +14,7 @@ import style from "../VideosList.module.css";
 
 // Logic
 
-const VideosRelated = props => (
+const VideosRelated = (props) => (
 	<div className={style.videosRelated}>
 		<VideoTemplate data={props.data} teams={props.teams} />
 	</div>

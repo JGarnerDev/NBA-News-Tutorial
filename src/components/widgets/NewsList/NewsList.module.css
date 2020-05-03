@@ -1,25 +1,29 @@
 .card {
-    border: 1px solid black;
-    background: white;
-    margin-top: 0px;
-    padding: 8px 5px 0 5px;
+    outline: 1px solid rgb(94, 94, 94);
+    background: rgb(69, 95, 119);
+    margin: 2px 0px 4px 0px;
+    padding: 8px 5px 0px 5px;
 }
 
 .card h2 {
-    font-size: 13px;
+    font-size: 12px;
+    font-weight: 400;
     line-height: 21px;
-    margin: 5px 0;
+    padding: 0px 5px 5px;
+    margin: 0;
 }
 
 .card a {
-    text-decoration: none;
+    text-decoration: none !important;
+    color: white;
+    font-weight: 100;
 }
 
 .wrapper {
     box-sizing: border-box;
     opacity: 0;
     transform: translateX(-100%);
-    transition: all .5s ease-in;
+    transition: all 0.5s ease-in;
 }
 
 .wrapper_enter {
@@ -32,12 +36,14 @@
 
 .card_wrap {
     display: flex;
-    border-bottom: 2px solid grey;
-    background: white;
+    background: rgb(69, 95, 119);
+    margin: 0px 0px 3px 0px;
 }
 
 .card_wrap h2 {
     font-size: 12px;
+    color: white;
+    font-weight: 400;
 }
 
 .left {
@@ -54,5 +60,5 @@
 
 .right {
     flex-grow: 1;
-    padding: 10px
+    padding: 10px;
 }

@@ -1,4 +1,11 @@
 .cardInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 140px;
+    height: 20px;
+    padding-right: 15px;
+    background: lightgrey;
     font-size: 11px;
 }
 
@@ -7,12 +14,12 @@
 }
 
 .teamName {
-    margin-right: 7px;
+    margin-left: 2px;
     background: grey;
     color: white;
     padding: 2px 5px;
 }
 
 .date {
-    color: aqua;
+    color: rgb(0, 78, 78);
 }

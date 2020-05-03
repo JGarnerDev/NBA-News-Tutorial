@@ -12,7 +12,7 @@ import style from "./NewsSlider.module.css";
 
 // Logic
 
-const SliderTemplates = props => {
+const SliderTemplates = (props) => {
 	let template = null;
 
 	const settings = {
@@ -24,7 +24,7 @@ const SliderTemplates = props => {
 		slidesToScroll: 1,
 
 		// bring in settings assigned in Home.js and overrides the above when conflicts occur
-		...props.settings
+		...props.settings,
 	};
 
 	switch (props.type) {
@@ -36,7 +36,7 @@ const SliderTemplates = props => {
 							<div
 								className={style.featuredImage}
 								style={{
-									background: `url(../images/articles/${item.image})`
+									background: `url(${item.image})`,
 								}}
 							></div>
 							<Link to={`/articles/${item.id}`}>

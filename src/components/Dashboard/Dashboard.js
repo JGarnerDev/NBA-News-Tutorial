@@ -2,8 +2,12 @@
 
 import React, { Component } from "react";
 import { Editor } from "react-draft-wysiwyg";
-import { EditorState, convertFromRaw, convertToRaw } from "draft-js";
+import { EditorState } from "draft-js";
 import { stateToHTML } from "draft-js-export-html";
+
+// Firebase
+
+import { firebase, DBArticles, DBTeams } from "../../firebase";
 
 // Components
 
@@ -13,7 +17,6 @@ import FileUploader from "../widgets/FileUploader/FileUploader";
 // Styling
 
 import style from "./Dashboard.module.css";
-import { DBTeams } from "../../firebase";
 
 // Logic
 
@@ -119,8 +122,32 @@ class Dashboard extends Component {
 
 		if (formIsValid) {
 			this.setState({
-				postError: "Post submitted!",
+				loading: true,
+				postError: "",
 			});
+
+			DBArticles.orderByChild("id")
+				.limitToLast(1)
+				.once("value")
+				.then((snapshot) => {
+					let articleId = null;
+					snapshot.forEach((childSnapshot) => {
+						articleId = childSnapshot.val().id;
+					});
+					dataToSubmit["date"] = firebase.database.ServerValue.TIMESTAMP;
+					dataToSubmit["id"] = 0;
+					dataToSubmit["team"] = parseInt(dataToSubmit["team"]);
+
+					DBArticles.push(dataToSubmit)
+						.then((article) => {
+							this.props.history.push(`/articles/${article.key}`);
+						})
+						.catch((e) => {
+							this.setState({
+								postError: e.message,
+							});
+						});
+				});
 		} else {
 			this.setState({
 				postError: "Something went wrong",
@@ -156,16 +183,9 @@ class Dashboard extends Component {
 		);
 
 	onEditorStateChange = (editorState) => {
-		// gets a snapshot of the content held in state
-		let stateContent = editorState.getCurrentContent();
-		// turns it into JS (compatible with JSON)
-		let convertedContent = convertToRaw(stateContent);
-		// converts the result into HTML (markup + css + content)
+		let contentInHTML = stateToHTML(editorState.getCurrentContent());
 
-		// Bug!
-		// let contentInHTML = stateToHTML(convertedContent);
-
-		this.updateForm({ id: "body" }, convertedContent);
+		this.updateForm({ id: "body" }, contentInHTML);
 
 		this.setState({
 			editorState,

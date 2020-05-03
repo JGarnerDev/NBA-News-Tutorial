@@ -9,4 +9,7 @@
     font-size: 15px;
     display: block;
     text-decoration: none;
+    -webkit-box-shadow: inset 0px 0px 10px -2px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: inset 0px 0px 10px -2px rgba(0, 0, 0, 0.75);
+    box-shadow: inset 0px 0px 10px -2px rgba(0, 0, 0, 0.75);
 }

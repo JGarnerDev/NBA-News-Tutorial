@@ -2,21 +2,24 @@
 
 .videoList h3 {
     text-align: center;
-    margin: 20px;
     color: black;
     font-weight: 300;
     font-size: 21px;
+    background: rgb(196, 68, 68);
+    margin: 0;
+    padding: 21px;
 }
 
 .video {
     display: flex;
-    border-bottom: 2px solid grey;
-    background: white;
+    margin: 2px 0px 2px 0px;
+    background: rgb(69, 95, 119);
 }
 
 .video h2 {
     font-size: 13px;
-    color: black;
+    padding: 10px;
+    color: white;
 }
 
 .left {
@@ -29,7 +32,7 @@
     background-size: 40px !important;
     background-repeat: no-repeat !important;
     background-position: center center !important;
-    background: url('/images/play.png');
+    background: url("/images/play.png");
 }
 
 .videosRelated {

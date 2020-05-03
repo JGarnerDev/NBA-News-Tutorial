@@ -1,7 +1,7 @@
 // Modules
 
 import React, { Component } from "react";
-import { DBArticles, firebaseLoop } from "../../../firebase";
+import { firebase, DBArticles, firebaseLoop } from "../../../firebase";
 // Components
 
 import SliderTemplates from "./SliderTemplates";
@@ -11,19 +11,31 @@ import SliderTemplates from "./SliderTemplates";
 
 class NewsSlider extends Component {
 	state = {
-		news: []
+		news: [],
 	};
 
 	componentWillMount() {
 		DBArticles.limitToFirst(3)
 			.once("value")
-			.then(snapshot => {
+			.then((snapshot) => {
 				const news = firebaseLoop(snapshot);
-				this.setState({
-					news
+
+				news.forEach((item, i) => {
+					firebase
+						.storage()
+						.ref("images")
+						.child(item.image)
+						.getDownloadURL()
+						.then((url) => {
+							news[i].image = url;
+							this.setState({ news });
+						});
 				});
+				// this.setState({
+				// 	news
+				// });
 			})
-			.catch(error => {
+			.catch((error) => {
 				console.log(error);
 			});
 	}

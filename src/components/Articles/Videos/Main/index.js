@@ -9,8 +9,6 @@ import VideosList from "../../../widgets/VideosList/VideosList";
 
 // Styling
 
-import style from "../../Articles.module.css";
-
 // Logic
 
 const VideosMain = () => (

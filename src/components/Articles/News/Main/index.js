@@ -13,7 +13,7 @@ import NewsList from "../../../widgets/NewsList/NewsList";
 
 // Logic
 
-const News = props => (
+const News = () => (
 	<div>
 		<NewsSlider
 			type="featured"
