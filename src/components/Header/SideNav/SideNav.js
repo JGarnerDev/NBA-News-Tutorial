@@ -10,7 +10,7 @@ import SideNavItems from "./SideNavItems";
 // Styling
 // Logic
 
-const SideNavigation = props => {
+const SideNavigation = (props) => {
 	return (
 		<div>
 			<SideNav showNav={props.showNav} onHideNav={props.onHideNav}>

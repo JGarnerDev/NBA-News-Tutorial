@@ -15,12 +15,12 @@ import "./Layout.module.css";
 
 class Layout extends Component {
 	state = {
-		showNav: false
+		showNav: false,
 	};
 
-	toggleSidenav = action => {
+	toggleSidenav = (action) => {
 		this.setState({
-			showNav: action
+			showNav: action,
 		});
 	};
 

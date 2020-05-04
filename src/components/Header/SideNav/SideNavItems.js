@@ -16,50 +16,50 @@ import style from "./SideNav.module.css";
 
 // Logic
 
-const SideNavItems = props => {
+const SideNavItems = (props) => {
 	const items = [
 		{
 			type: style.option,
 			icon: "home",
 			text: "Home",
 			link: "/",
-			login: ""
+			login: "",
 		},
 		{
 			type: style.option,
 			icon: "file-text-o",
 			text: "News",
 			link: "/news",
-			login: ""
+			login: "",
 		},
 		{
 			type: style.option,
 			icon: "play",
 			text: "Videos",
 			link: "/videos",
-			login: ""
+			login: "",
 		},
 		{
 			type: style.option,
 			icon: "sign-in",
 			text: "Dashboard",
 			link: "/dashboard",
-			login: false
+			login: false,
 		},
 		{
 			type: style.option,
 			icon: "sign-in",
 			text: "Sign-in",
 			link: "/sign-in",
-			login: true
+			login: true,
 		},
 		{
 			type: style.option,
 			icon: "sign-out",
 			text: "Sign-out",
 			link: "/sign-out",
-			login: false
-		}
+			login: false,
+		},
 	];
 
 	const ele = (item, i) => (
@@ -110,7 +110,7 @@ const SideNavItems = props => {
 		});
 	};
 
-	return <div>{showItems()}</div>;
+	return <div onClick={props.onHideNav}>{showItems()}</div>;
 };
 
 export default withRouter(SideNavItems);

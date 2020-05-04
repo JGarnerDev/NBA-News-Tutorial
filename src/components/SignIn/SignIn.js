@@ -29,12 +29,12 @@ class SignIn extends Component {
 				config: {
 					name: "emailInput",
 					type: "email",
-					placeholder: "Enter your email"
+					placeholder: "Enter your email",
 				},
 				validation: { required: true, email: true },
 				valid: false,
 				touched: false,
-				validationMessage: ""
+				validationMessage: "",
 			},
 			password: {
 				element: "input",
@@ -42,17 +42,17 @@ class SignIn extends Component {
 				config: {
 					name: "passwordInput",
 					type: "password",
-					placeholder: "Enter your password"
+					placeholder: "Enter your password",
 				},
 				validation: { required: true, password: true },
 				valid: false,
 				touched: false,
-				validationMessage: ""
-			}
-		}
+				validationMessage: "",
+			},
+		},
 	};
 
-	validate = ele => {
+	validate = (ele) => {
 		let error = [true, ""];
 
 		if (ele.validation.email) {
@@ -93,7 +93,7 @@ class SignIn extends Component {
 			if (formIsValid) {
 				this.setState({
 					loading: true,
-					registerError: ""
+					registerError: "",
 				});
 				if (type) {
 					firebase
@@ -105,7 +105,7 @@ class SignIn extends Component {
 						.then(() => {
 							this.props.history.push("/");
 						})
-						.catch(error => {
+						.catch((error) => {
 							this.setState({ loading: false, registerError: error.message });
 						});
 				} else {
@@ -118,7 +118,7 @@ class SignIn extends Component {
 						.then(() => {
 							this.props.history.push("/");
 						})
-						.catch(error => {
+						.catch((error) => {
 							this.setState({ loading: false, registerError: error.message });
 						});
 				}
@@ -132,14 +132,14 @@ class SignIn extends Component {
 		) : (
 			<div>
 				<button
-					onClick={event => {
+					onClick={(event) => {
 						this.submitForm(event, false);
 					}}
 				>
 					Register!{" "}
 				</button>
 				<button
-					onClick={event => {
+					onClick={(event) => {
 						this.submitForm(event, true);
 					}}
 				>
@@ -148,12 +148,12 @@ class SignIn extends Component {
 			</div>
 		);
 
-	updateForm = ele => {
+	updateForm = (ele) => {
 		const newFormdata = {
-			...this.state.formdata
+			...this.state.formdata,
 		};
 		const newEle = {
-			...newFormdata[ele.id]
+			...newFormdata[ele.id],
 		};
 		newEle.value = ele.event.target.value;
 
@@ -170,7 +170,7 @@ class SignIn extends Component {
 		console.log(newFormdata);
 
 		this.setState({
-			formdata: newFormdata
+			formdata: newFormdata,
 		});
 	};
 
@@ -183,9 +183,10 @@ class SignIn extends Component {
 
 	render() {
 		return (
-			<div className={style.logContainer}>
+			<div className={style.logFormContainer}>
 				<form
-					onSubmit={event => {
+					className={style.logForm}
+					onSubmit={(event) => {
 						this.submitForm(event, null);
 					}}
 				>
@@ -193,15 +194,16 @@ class SignIn extends Component {
 					<FormField
 						id={"email"}
 						formdata={this.state.formdata.email}
-						change={ele => this.updateForm(ele)}
+						change={(ele) => this.updateForm(ele)}
 					/>
 					<FormField
 						id={"password"}
 						formdata={this.state.formdata.password}
-						change={ele => this.updateForm(ele)}
+						change={(ele) => this.updateForm(ele)}
 					/>
 
 					{this.submitButton()}
+
 					{this.showError()}
 				</form>
 			</div>

@@ -2,6 +2,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 120px;
+    overflow: hidden;
+}
+
+.formContainer input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 50px;
+    width: 80%;
+    text-align: center;
 }
 
 .errorMessage {

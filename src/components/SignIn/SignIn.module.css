@@ -1,21 +1,30 @@
-.logContainer {
+.logFormContainer {
     display: flex;
     justify-content: center;
-    width: 90%;
-    margin: 0 auto;
-    height: 100vh;
-    padding-top: 100px;
+    align-items: center;
+    height: 85vh;
+    background: rgb(69, 95, 119)
 }
 
-.logContainer h2 {
-    text-align: center;
+.logForm {
+    display: flex;
+    height: 80%;
+    width: 80%;
+    max-width: 400px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background: lightgray;
 }
 
-.logContainer input {
-    box-sizing: border-box;
+.logForm div {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+}
+
+.logForm button {
+    width: 100px;
     height: 50px;
-    width: 80vw;
-    max-width: 300px;
-    padding: 10px;
-    margin-top: 40px;
+    border: 1px solid gray;
 }
